@@ -9,8 +9,8 @@ export default async function connect(
   try {
     const {network} = req.body;
     const url = getNodeURL(network);
-    const connection = undefined;
-    const version = undefined;
+    const connection = new Connection('http://127.0.0.1:8899');
+    const version = await connection.getVersion();
     res.status(200).json(version['solana-core']);
   } catch (error) {
     let errorMessage = error instanceof Error ? error.message : 'Unknown Error';
